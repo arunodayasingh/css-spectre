@@ -1,0 +1,104 @@
+/* CSS Spectre Core Styles */
+:root {
+  --spectre-depth: 0;
+}
+
+/* 1. The Result Bar (Bottom HUD) */
+#spectre-hud {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  min-height: 30px;
+  background: #2b2b2b;
+  color: #fff;
+  z-index: 2147483647;
+  /* Max z-index */
+  font-family: 'Consolas', 'Monaco', 'Menlo', monospace;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 10px 15px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  white-space: normal;
+  pointer-events: none;
+  /* Let clicks pass through */
+}
+
+/* Show bar when active */
+html[data-debug="on"] #spectre-hud {
+  display: block;
+}
+
+/* 2. Element Outlines (Universal) */
+html[data-debug="on"] body * {
+  /* Random Color Outline */
+  outline: 1px solid hsl(var(--debug-hue, 0), 100%, 50%) !important;
+  /* Removed forced background override so natural BG shows */
+  cursor: crosshair;
+}
+
+/* 3. Removed Conditional Background Fill - Only Outlines */
+
+/* 4. Box Model Overlay (Hover Visualization) */
+#spectre-overlay {
+  display: none;
+  position: fixed;
+  z-index: 2147483646;
+  /* Below HUD, above content */
+  pointer-events: none;
+}
+
+.spectre-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+}
+
+.spectre-margin {
+  background: rgba(246, 178, 107, 0.4);
+  /* Orange */
+  border: 1px dashed rgba(246, 178, 107, 0.8);
+}
+
+.spectre-padding {
+  background: rgba(147, 196, 125, 0.4);
+  /* Green */
+  border: 1px dashed rgba(147, 196, 125, 0.8);
+}
+
+.spectre-content {
+  background: rgba(109, 158, 235, 0.4);
+  /* Blue */
+}
+
+/* Show only when debugging */
+html[data-debug="on"] #spectre-overlay {
+  display: block;
+}
+
+/* Exclude the result bar from outlines */
+html[data-debug="on"] #spectre-hud,
+html[data-debug="on"] #spectre-hud * {
+  outline: none !important;
+  background-color: #2b2b2b !important;
+}
+
+/* 3. Text Styling in Result Bar */
+#spectre-hud strong {
+  color: #ff79c6;
+  /* Pink for Tag */
+  font-weight: bold;
+}
+
+#spectre-hud span.id {
+  color: #8be9fd;
+  /* Cyan for ID */
+}
+
+#spectre-hud span.class {
+  color: #f1fa8c;
+  /* Yellow for Class */
+}

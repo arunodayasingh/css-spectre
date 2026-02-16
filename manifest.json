@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "CSS Spectre",
+  "description": "A ghostly X-Ray for your CSS. Instantly visualize layout boundaries and box models.",
+  "version": "1.0.0",
+  "icons": {
+    "128": "icon.png"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "action": {
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}
